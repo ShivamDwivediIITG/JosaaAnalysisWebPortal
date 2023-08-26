@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Josaa Analysis</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #0FBBBE; /* Set the background color */
+		margin: 0; /* Remove default body margin */
+		padding: 0; /* Remove default body padding */
+	  }
+
+    .header {
+      padding: 20px;
+      text-align: center;
+    }
+
+	.navbar {
+		border: 1px solid #343a40; /* Add border to create a card-like effect */
+		border-radius: 10px; /* Rounded corners for the card */
+		background-color: #343a40; /* Background color */
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+		padding: 10px; /* Adjust padding as needed */
+	  }
+	  
+	  .navbar a {
+		color: white;
+	  }
+	
+	  .navbar a:hover {
+		background-color: #6c757d;
+	  }
+
+    .active {
+      background-color: #28a745 !important;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    .box {
+      padding: 20px;
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .chart-container {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .chart-container2 {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+	.dropdown-menu a.dropdown-item {
+		background-color: black;
+		color: white;
+	  }
+  
+	  /* Hover effect */
+	  .dropdown-menu a.dropdown-item:hover {
+		background-color: #292b2c; /* Darker shade for hover effect */
+	  }
+	  
+	  /* Active dropdown item */
+	  .dropdown-menu a.dropdown-item.active {
+		background-color: #343a40;
+	  }
+	  .chart-card {
+		border: 1px solid #ccc; /* Add a border with a color of your choice */
+		padding: 20px; /* Add padding to create spacing around the chart */
+		background-color: black; /* Set a background color for the card */
+		border-radius: 5px; /* Add rounded corners to the card */
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+		margin-bottom: 20px; /* Add margin at the bottom to separate cards */
+	  }
+	  .header {
+		/* ... your existing styles ... */
+		z-index: 1000; /* Add a higher z-index to keep the header on top */
+	  }
+	
+	  .chart-card {
+		/* ... your existing styles ... */
+		margin-top: 20px; /* Add margin at the top to separate cards from the header */
+	  }
+	  .card {
+		/* Your card styles here */
+		border: 1px solid rgba(0, 0, 0, 0.125);
+		border-radius: 0.25rem;
+		background-color: #343a40;
+		color: white;
+		padding: 10px;
+	  }
+  </style>
+</head>
+
+<body>
+	
+	  
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="width: 16.67% ;top: 80px; left:25px;">
+			<div class="container-fluid" style="height: 80vh;">
+
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav flex-column">
+				  <li class="nav-item">
+					<div class="box text-center">
+					  <img src="https://media.licdn.com/dms/image/C4D03AQEJYooGcKtr8g/profile-displayphoto-shrink_100_100/0/1656710168015?e=1698278400&v=beta&t=aQHWWGxmK8leJWJGmnzNyw-dTC0kZVxKTp6Oud7-8vg" alt="Profile Photo" width="100" style="border-radius: 50%;">
+					  <h5 class="mt-2">Shivam Dwivedi</h5>
+					</div>
+				  </li>
+				  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-white" href="#" id="analysisDropdown" role="button"
+					  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  Analysis
+					</a>
+					<div class="dropdown-menu" aria-labelledby="analysisDropdown">
+					  <a class="dropdown-item text-white" href="#total1">Collegewise Intake</a>
+					  <a class="dropdown-item text-white" href="#total2">GenderWise Intake</a>
+					  <a class="dropdown-item text-white" href="#total3">Intercollege Trend</a>
+					  <a class="dropdown-item text-white" href="#total4">Intracollege Trend</a>
+					  <a class="dropdown-item text-white" href="#total5">BranchWise Intake</a>
+					</div>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link text-white" href="/iit">IIT participated</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link text-white" href="/branch">Branch offered</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link text-white" href="/admin">Admin</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link text-white" href="https://www.linkedin.com/in/shivam-dwivedi-9236b81a1/">Contact Me</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+		  <div class="container-full-page card" style="position: fixed; top: 0; left:0; width: 100%; background-color: black; color: white; text-align: center; padding: 5px 0 5px 0px;z-index:999;">
+			<div class="row">
+			  <div class="col">
+				<h1><b>Welcome to the Josaa Data Analysis Portal</b></h1>
+			  </div>
+			</div>
+		  </div>
+		  
+		  
+	  <div class="container mt-5 pt-5">
+		<div class="row">
+		  <div class="col-md-2">
+			<!-- Rest of your dashboard content here -->
+			
+		  </div>
+		  <div class="col-md-10">
+			<div class="chart-card" >
+				<div class="col" id=total1>
+				<canvas id="myChartBar"></canvas>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+				  <div class="chart-card" id=total2>
+					<canvas id="doughnutchart"></canvas>
+				  </div>
+				</div>
+				<div class="col-md-6">
+				  <div class="chart-card" id=total3>
+					<canvas id="myChartLine"></canvas>
+				
+				
+				  </div>
+				</div>
+			  </div>
+			
+			<div class="row">
+				<div class="col-md-6">
+				  <div class="chart-card" id=total4>
+					<canvas id="myChartLine2"></canvas>
+				
+				  </div>
+				</div>
+				<div class="col-md-6">
+				  <div class="chart-card" id=total5>
+					<canvas id="barchart"></canvas>
+				  </div>
+				</div>
+			  </div>
+			  <div class="card mt-5 pt-5" style="background-color: #14D39C; color: white; padding: 10px;">
+				<h2 style="padding-left:20px;">Insights from Data Analysis</h2>
+				<p>
+					<ul>
+						<li>IIT KHARAGPUR has the highest intake in the iits.</li>
+						<li>Female reserved seats are 75% of neutral seats thus indicating a fair contribution of girls in upcoming engineering disciplines . </li>
+						<li>Branch wise trend has shown that student are more interested to computer related branches with second prefered option is matematics & computing branches.</li>
+						<li>The intracollege analysis shows that branch like civil engineering has less popularity in iits other than top 7 as there is saturation in closing rank from the first round itself.</li>
+						<li>Thus due to branch wise trend seat intake of computer science discipline is the highest.</li>
+						
+					</ul>
+				</p>
+				<!-- Add more insights here -->
+			  </div>
+				
+				</div>
+			  </div>
+			</div>
+			
+        
+  
+
+
+      
+  
+  <canvas id="chart"></canvas>
+ 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    $(document).ready(function() {
+      // Close dropdown on click outside
+      $(document).click(function(event) {
+        var target = $(event.target);
+        if (!target.closest(".nav-item.dropdown").length) {
+          $(".nav-item.dropdown.show .dropdown-menu").css("max-height", "0");
+        }
+      });
+    });
+  </script>
+
+<script>
+	
+    $.ajax({
+      method: "GET",
+      url: '/api',
+      success: function(data) {
+        drawBarGraph(data, 'myChartBar');
+        console.log("drawing");
+      },
+      error: function(error_data) {
+        console.log(error_data);
+      }
+    })
+
+	$.ajax({
+		method: "GET",
+		url: '/api/pie',
+		success: function(data) {
+		  drawDoughnutGraph(data,'doughnutchart');
+		  console.log("drawing");
+		},
+		error: function(error_data) {
+		  console.log(error_data);
+		}
+	  })
+
+	$.ajax({
+		method: "GET",
+		url: '/api/b',
+		success: function(data) {
+		  drawBarGraph(data, 'barchart');
+		  console.log("drawing");
+		},
+		error: function(error_data) {
+		  console.log(error_data);
+		}
+	  })
+
+	$.ajax({
+		method: "GET",
+		url: '/api/line',
+		success: function(data) {
+		  drawLineGraph(data, 'myChartLine');
+		  console.log("drawing");
+		},
+		error: function(error_data) {
+		  console.log(error_data);
+		}
+	  })
+
+	  $.ajax({
+		method: "GET",
+		url: '/api/line2',
+		success: function(data) {
+		  drawLineGraph(data, 'myChartLine2');
+		  console.log("drawing");
+		},
+		error: function(error_data) {
+		  console.log(error_data);
+		}
+	  })
+  
+    function drawDoughnutGraph(data, id) {
+      var labels = data.labels;
+      var chartLabel = data.chartLabel;
+      var chartdata = data.chartdata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'doughnut',
+
+        // The data for our dataset
+        data: {
+          labels: labels,
+          datasets: [{
+            label: chartLabel,
+            backgroundColor:  ['rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'],
+            borderColor: 'rgb(55, 99, 132)',
+            data: chartdata,
+          }]
+        },
+
+        // Configuration options go here
+        
+      });
+
+    }
+
+	
+	
+	function drawLineGraph(data, id) {
+		var labels = data.labels;
+		var chartLabel = data.chartLabel;
+		var chartdata = data.chartdata;
+		var ctx = document.getElementById(id).getContext('2d');
+		var chart = new Chart(ctx, {
+		  // The type of chart we want to create
+		  type: 'line',
+  
+		  // The data for our dataset
+		  data: {
+			labels: labels,
+			datasets: [{
+				label: chartLabel,
+			  backgroundColor: '#87CEEB',
+			  borderColor: 'rgb(55, 99, 132)',
+			  data: chartdata,
+			}]
+		  },
+  
+		  // Configuration options go here
+		  options: {
+			scales: {
+				xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false // Hide x-axis grid lines
+                    },
+                    ticks: {
+                        display: false // Hide x-axis labels
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false // Hide y-axis grid lines
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+			}
+		  }
+  
+		});
+	 }
+	
+	
+
+	
+
+	function drawBarGraph(data, id) {
+	var labels = data.labels;
+	var chartLabel = data.chartLabel;
+	var chartdata = data.chartdata;
+	var ctx = document.getElementById(id).getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+		labels: labels,
+		datasets: [{
+			label: chartLabel,
+			data: chartdata,
+			backgroundColor: [
+			'rgba(255, 99, 132, 1)',
+			'rgba(54, 162, 235, 1)',
+			'rgba(255, 206, 86, 1)',
+			'rgba(75, 192, 192, 1)',
+			'rgba(153, 102, 255, 1)',
+			'rgba(255, 159, 64, 1)',
+			'rgba(255, 99, 132, 1)',
+			'rgba(54, 162, 235, 1)',
+			'rgba(255, 206, 86, 1)',
+			'rgba(75, 192, 192, 1)',
+			'rgba(153, 102, 255, 1)',
+			'rgba(255, 159, 64, 1)',
+			'rgba(255, 99, 132, 1)',
+			'rgba(54, 162, 235, 1)',
+			'rgba(255, 206, 86, 1)',
+			'rgba(75, 192, 192, 1)',
+			'rgba(153, 102, 255, 1)',
+			'rgba(255, 159, 64, 1)',
+			'rgba(255, 99, 132, 1)',
+			'rgba(54, 162, 235, 1)',
+			'rgba(255, 206, 86, 1)',
+			'rgba(75, 192, 192, 1)',
+			'rgba(153, 102, 255, 1)',
+			'rgba(255, 159, 64, 1)'
+			],
+			borderColor: 
+			'rgba(255, 99, 132, 1)',
+		
+			borderWidth: 1
+		}]
+		},
+		options: {
+		scales: {
+			
+			xAxes: [{
+				display: true,
+				gridLines: {
+					display: false // Hide x-axis grid lines
+				},
+				ticks: {
+					display: false // Hide x-axis labels
+				}
+			}],
+			yAxes: [{
+				gridLines: {
+					display: false // Hide y-axis grid lines
+				},
+				ticks: {
+					beginAtZero: true
+				}
+			}]
+		}
+		}
+	});
+	}
+
+
+    // Your JavaScript code for drawing charts
+  </script>
+</body>
+
+</html>
+
